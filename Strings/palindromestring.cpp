@@ -45,7 +45,7 @@ int main(){
     cout<<checkpalindrome(str,n);
 }
 
-/*
+/*  best method 
 class Solution {
 public:
     bool isPalindrome(string s) {
