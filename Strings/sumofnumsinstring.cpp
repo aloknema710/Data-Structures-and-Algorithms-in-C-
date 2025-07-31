@@ -26,7 +26,6 @@ int main() {
     // Solution obj ;
     cout << "Sum: "  ;
     cout <</* obj.*/sumOfIntegers(str, l)  ;
-
     return 0  ;
 }
 
