@@ -31,10 +31,10 @@ void print(Node* head){
 
 Node* convertarrtoDLL(vector<int> arr){
     Node* head = new Node(arr[0]);
-    Node* prev = head;
+    Node* prev = head;                   // previous node to temp will play key role in pointing pointers 
     for(int i = 1; i < arr.size(); i++){
         Node* temp = new Node(arr[i], nullptr, prev);
-        prev->next = temp;
+        prev->next = temp;            // because we are inserting at the end head's next isn't initialized yet
         prev = temp;
     }
     return head;

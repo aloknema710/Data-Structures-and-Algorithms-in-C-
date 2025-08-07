@@ -2,59 +2,60 @@
 using namespace std;
 
 int countWords(const string& str) {
-  // Handle empty string case
-  if (str.empty()) return 0;
-  
-  stringstream ss(str);
-  string word;
-  int count = 0;
-  
-  // Count words by splitting on whitespace
-  while (ss >> word) {
-      count++;
-  }
-  
-  return count;
+    int count = 0;
+    bool inWord = false;
+    
+    for (char c : str) {
+        if (isspace(c)) {       // if the character is a space boolean var inWord is set to false
+            inWord = false;
+        } else if (!inWord) {   // character is not a space but it is just after the space it will count and set boolean var inWord 
+            inWord = true;      // to true. boolean var inWord will be true until the next space is encountered
+            count++;            //// This means we are at the start of a new word
+        }
+    }
+    
+    return count;
 }
+
 int main() {
-  string input;
-  
-  cout << "Enter a string: ";
-  getline(cin, input);  // Read entire line including spaces
-  
-  int wordCount = countWords(input);
-  
-  cout << "Number of words in the string: " << wordCount << endl;
-  
-  return 0;
+    string input;
+    
+    cout << "Enter a string: ";
+    getline(cin, input);
+    
+    cout << "Number of words in the string: " << countWords(input) << endl;
+    
+    return 0;
 }
 
 // int countWords(const string& str) {
-//     int count = 0;
-//     bool inWord = false;
-    
-//     for (char c : str) {
-//         if (isspace(c)) {
-//             inWord = false;
-//         } else if (!inWord) {
-//             inWord = true;
-//             count++;
-//         }
-//     }
-    
-//     return count;
+//   // Handle empty string case
+//   if (str.empty()) return 0;
+  
+//   stringstream ss(str);
+//   string word;
+//   int count = 0;
+  
+//   // Count words by splitting on whitespace
+//   while (ss >> word) {
+//       count++;
+//   }
+  
+//   return count;
+// }
+// int main() {
+//   string input;
+  
+//   cout << "Enter a string: ";
+//   getline(cin, input);  // Read entire line including spaces
+  
+//   int wordCount = countWords(input);
+  
+//   cout << "Number of words in the string: " << wordCount << endl;
+  
+//   return 0;
 // }
 
-// int main() {
-//     string input;
-    
-//     cout << "Enter a string: ";
-//     getline(cin, input);
-    
-//     cout << "Number of words in the string: " << countWords(input) << endl;
-    
-//     return 0;
-// }
 
 
 // #include <bits/stdc++.h>

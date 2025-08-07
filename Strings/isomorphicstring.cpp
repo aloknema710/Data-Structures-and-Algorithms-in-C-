@@ -9,11 +9,11 @@ bool isIsomorphic(string s, string t) {
     for (int i = 0; i < s.length(); ++i) {
         char c1 = s[i], c2 = t[i];
         if ((mapST.count(c1) && mapST[c1] != c2) ||
-            (mapTS.count(c2) && mapTS[c2] != c1)) {
+            (mapTS.count(c2) && mapTS[c2] != c1)) {      // if the mapping is inconsistent 
             return false;
         }
-        mapST[c1] = c2;
-        mapTS[c2] = c1;
+        mapST[c1] = c2;                                // map from s to t
+        mapTS[c2] = c1;                               // map from t to s                                
     }
     return true;
 }

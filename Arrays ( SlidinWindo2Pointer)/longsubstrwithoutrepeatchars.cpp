@@ -7,7 +7,7 @@ int func(string s){
         int hash[256] = {0};
         for(int j = i; j < s.length(); j++){
             if(hash[s[j]] == 0){          // if the character is not repeating marking it as seen
-                hash[s[j]]++;
+                hash[s[j]]++;             // incrementing the count of the character in the hash array
                 // res = max(res, s.substr(i, j - i + 1));    statement is to find the maximum length substring (returning the longest substring without repeating characters)
                 res = max(res,j-i+1);
             } else {
@@ -24,8 +24,8 @@ int optfunc(string s) {
     map<char, int> hash;  // Store the last index of each character
 
     while (right < s.length()) {
-        // If the character exists in the map and its last index is >= left
-        if (hash.find(s[right]) != hash.end() && hash[s[right]] >= left) {
+        // If the character exists in the map and its last index is >= left, i.e if we have last seen  
+        if (hash.find(s[right]) != hash.end() && hash[s[right]] >= left) {  // then eliminate them from windo
             left = hash[s[right]] + 1;  // Move the left pointer to the right of the last occurrence
         }
         
