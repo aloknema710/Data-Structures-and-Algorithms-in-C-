@@ -55,3 +55,42 @@ Means:
 
 
 */
+
+
+/*
+🔁 Your Original Code:
+string str = "1a30z67";
+
+
+This code sums the integers embedded in the string:
+
+"1" → 1
+
+"30" → 30
+
+"67" → 67
+✅ So total: 1 + 30 + 67 = 98
+
+💡 Your Suggested Approach:
+
+"Why not just do: if s[i] is a digit, convert it to an int and add to answer?"
+
+That would do this:
+
+'1' → 1
+
+'3' → 3
+
+'0' → 0
+
+'6' → 6
+
+'7' → 7
+✅ So total: 1 + 3 + 0 + 6 + 7 = 17
+
+| Goal                             | Logic Needed                                | Sum for `"1a30z67"` |
+| -------------------------------- | ------------------------------------------- | ------------------- |
+| Sum of all **whole numbers**     | Need to **build multi-digit numbers**       | `98`                |
+| Sum of all **individual digits** | Just check `isdigit(s[i])` and add directly | `17`                |
+
+*/
