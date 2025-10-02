@@ -46,7 +46,7 @@ class Queue{
     } else
       start = (start + 1) % maxSize;
     currSize--;
-    return popped;
+      return popped;
   }
 
   int top() {

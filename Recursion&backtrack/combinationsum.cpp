@@ -1,58 +1,67 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool combsum(int index, vector<int>& arr, vector<int>& v, int n, int k) {
-    if (k == 0) {
-        for (int i = 0; i < v.size(); i++) {
-            cout << v[i] << " ";
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        backtrack(candidates, target, 0, ds, ans);
+        return ans;
+    }
+private:
+    void backtrack(vector<int>& candidates, int target, int start,
+     vector<int>& ds, vector<vector<int>>& ans) {
+        if (target == 0) {
+            ans.push_back(ds);
+            return;
         }
-        cout << endl;
-        return true;
+        
+        if (target < 0) {
+            return;
+        }
+
+        for(int i = start; i < candidates.size(); i++){
+            ds.push_back(candidates[i]);
+            backtrack(candidates, target - candidates[i], i, ds, ans);
+            ds.pop_back();
+        }
     }
-    if (index == n) {
-        return false;
-    }
-    bool found = false; //found is used to keep track of whether a valid combination has been found during the recursive calls.
-    // Include the current element arr[index] in the combination
-    if (arr[index] <= k) {
-        v.push_back(arr[index]);
-        found |= combsum(index, arr, v, n, k - arr[index]); // Reuse elements
-        v.pop_back();
-    }
-    // Do not include the current element, move to the next element
-    found |= combsum(index + 1, arr, v, n, k);      // bitwise or assignment operator
-//                                                   If combsum(index + 1, arr, v, n, k) returns true, found will become true.
-//                                                   If it returns false, found will stay false.    
-   
+};
+
+int main(){
+    
+}
+
+
 /*
-Example:
-Suppose found = false initially.
+class Solution {
+public:
+    vector<vector<int>> res;
 
-combsum(index + 1, arr, v, n, k) returns true (meaning a valid combination was found).
+    void backtrack(vector<int>& candidates, int target, int idx, vector<int>& curr) {
+        // Base case: found a valid combination
+        if (target == 0) {
+            res.push_back(curr);
+            return;
+        }
 
-After the |=, found will become true.
+        // If target goes negative or no more candidates left
+        if (target < 0 || idx >= candidates.size()) return;
 
-Suppose found = false initially.
+        // 1. Include current candidate (unlimited usage)
+        curr.push_back(candidates[idx]);
+        backtrack(candidates, target - candidates[idx], idx, curr);
+        curr.pop_back();  // backtrack
 
-combsum(index + 1, arr, v, n, k) returns false (meaning no valid combination was found).
-
-After the |=, found will stay false.
-
-So, the purpose of this line is to update the value of found to true if any recursive call to combsum finds a valid combination.
-*/ 
-    return found;
-}
-int main() {
-    int n;
-    cin >> n;
-    vector<int> arr(n);
-    vector<int> v;
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+        // 2. Skip current candidate (move to next)
+        backtrack(candidates, target, idx + 1, curr);
     }
-    int k;
-    cin >> k;
-    if (!combsum(0, arr, v, n, k)) {       // ! is used here so that only first statement runs
-        cout << "No combination found" << endl;
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int> curr;
+        backtrack(candidates, target, 0, curr);
+        return res;
     }
-return 0;
-}
+};
+*/
