@@ -60,3 +60,13 @@ class Queue{
     return currSize;
   }
 };
+
+int main() {
+  Queue q(5);
+  q.push(3);
+  q.push(6);
+  q.push(9);
+  cout << "The front element before popping any element is " << q.top() << endl;
+  cout << "The element popped is " << q.pop() << endl;
+  cout << "The front element after popping an element is " << q.top() << endl;
+}
