@@ -23,4 +23,15 @@ int main(){
         adjList[u].push_back(v);
         adjList[v].push_back(u); // for undirected graph
     }
+
+
+    // for weighted graphs
+    vector<vector<pair<int, int>>> adjaList(n + 1);
+    for (int i = 0; i < m; i++){
+        int u, v, w;
+        cin >> u >> v >> w;
+
+        adjaList[u].push_back({v, w});
+        adjaList[v].push_back({u, w}); // remove this for directed graph
+    }
 }

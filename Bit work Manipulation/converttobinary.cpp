@@ -22,7 +22,13 @@ string decimalToBinaryString(int n) {
     if (n == 0) return "0";
     string binary;
     while (n > 0) {
-        binary = to_string(n % 2) + binary;
+        // binary = to_string(n % 2) + binary;
+        if (n%2 == 1){
+            binary = '1' + binary;
+        } else{
+            binary = '0' + binary;
+        }
+        
         n /= 2;
     }
     return binary;
