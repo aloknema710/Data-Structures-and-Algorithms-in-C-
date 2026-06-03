@@ -61,13 +61,13 @@ int division(int a, int b){     // a = 22, b = 3
     int dividend = abs(a);
     int divisor = abs(b);
     int quotient = 0;
-    while(dividend >= divisor){
+    while(dividend >= divisor){    // 22 >= 3    .... 4 >= 3
         int cnt = 0;
-        while (dividend >= (divisor<<(cnt+1))){
-            cnt++;
+        while (dividend >= (divisor<<(cnt+1))){    // 22 >= (3<<1) ... 4 >= (3<<1)
+            cnt++;   // 0+1, ...  0
         }
-        quotient += 1<<cnt;
-        dividend -= (divisor<<cnt);
+        quotient += 1<<cnt;    // 0 + (1<<1)  i.e 2,  ... 2 + (1<<0)  i.e 3 
+        dividend -= (divisor<<cnt);        // 10 - (3 << 1) = 4, ... 4 - (3 << 0) = 1  loop outer ends.
     }
     if(quotient == (1 << 31) && sign) return INT_MAX;
 
@@ -75,6 +75,26 @@ int division(int a, int b){     // a = 22, b = 3
 
     return sign ? quotient : -quotient;
 }
+
+int divide(int dividend, int divisor) {
+        long qout = 0;
+        bool sign = true;
+        if(dividend == divisor) return 1;
+        if(dividend >= 0 && divisor <= 0) sign = false;
+        if(dividend <= 0 && divisor >= 0) sign = false;
+        long long dvd = llabs((long long)dividend);
+        long long dvs = llabs((long long)divisor);
+        while(dvd >= dvs){
+            long cnt = 0;
+            while(dvd >= (dvs << (cnt+1))) cnt++;
+            qout += 1<<cnt;
+            dvd -= dvs<<cnt;
+        }
+        if(qout == (1 << 31) && sign) return INT_MAX;
+
+        if(qout == (1 << 31) && !sign) return INT_MIN;
+        return sign ? qout : -qout;
+    }
 
 int main(){
     int a = 6, b = 5;
