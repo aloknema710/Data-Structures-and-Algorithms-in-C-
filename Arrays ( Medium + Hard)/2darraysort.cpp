@@ -17,7 +17,7 @@ int main() {
 
     int k;
     cin >> k;
-
+    // This line is using a custom comparator with sort() to sort the rows of the 2D array based on column k.
     sort(arr.begin(), arr.end(), [k](const vector<int>& a, const vector<int>& b) {
         return a[k] < b[k];
     });
@@ -31,3 +31,23 @@ int main() {
 
     return 0;
 }
+
+/*
+3. The lambda function
+[k](const vector<int>& a, const vector<int>& b)
+{
+    return a[k] < b[k];
+}
+
+This is a lambda function (anonymous function).
+
+Equivalent named function:
+
+bool compare(const vector<int>& a,
+             const vector<int>& b)
+{
+    return a[k] < b[k]; // won't compile because k is local
+}
+
+The lambda solves this by capturing k.
+*/

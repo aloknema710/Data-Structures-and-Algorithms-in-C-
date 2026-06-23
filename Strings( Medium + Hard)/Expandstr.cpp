@@ -3,49 +3,39 @@ using namespace std;
 
 class Solution {
 public:
-    string decodeString(string s) 
-    {
-        stack<int> Loop;
-        stack<string> String;
-        string Result = "", Data = "";
-        int Number = 0;
-
-        for(int i = 0; i < s.length(); i++)
-        {
-            if(isdigit(s[i]))
-            {
-                Number = (Number * 10) + (s[i] - '0');
+    string decodeString(string s) {
+        string ans = "";
+        int num = 0;
+        stack<int> numst;
+        stack<string> charst;
+        for(int i = 0;i < s.size();i++){
+            if(isdigit(s[i])){
+                num = num*10 + (s[i] - '0');
             }
-            else if(s[i] == '[')
-            {
-                String.push(Result);
-                Result = "";
-                Loop.push(Number);
-                Number = 0;
+            else if(s[i] == '['){
+                numst.push(num);
+                charst.push(ans);
+                num = 0;
+                ans = "";
             }
-            else if(s[i] == ']')
-            {
-                Data = Result;
-                Result = String.top();
-
-                for(int j = 0; j < Loop.top(); j++)
-                {
-                    Result += Data;
+            else if(s[i] == ']'){
+                int rep = numst.top();
+                numst.pop();
+                string prev = charst.top();
+                charst.pop();
+                string temp = "";
+                for(int i = 0;i < rep; i++){
+                    temp += ans; 
                 }
-
-                String.pop();
-                Loop.pop();
+                ans = prev + temp;
             }
-            else
-            {
-                Result += s[i];
+            else{
+                ans += s[i];
             }
         }
-
-        return Result;
+        return ans;
     }
 };
-
 int main(){
     string s1 = "3[a2[c]]";
     Solution s;
